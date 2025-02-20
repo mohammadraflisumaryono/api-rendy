@@ -10,13 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 const port = 3000;
 
-// Suhu
-// PH
-// turbidity
-// tds
+// dashboard pages dashboard.html
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/pages/dashboard.html');
+});
+
+
 
 const router = require('./routes/route');
 app.use('/api', router);
@@ -26,3 +29,9 @@ app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 }
 );
+
+
+
+
+
+
