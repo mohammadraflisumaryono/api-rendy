@@ -14,9 +14,16 @@ app.use(express.static('public'));
 
 const port = 3000;
 
+
+// cron-job
+require("./utils/cron-schedule");
 // dashboard pages dashboard.html
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/pages/dashboard.html');
+});
+
+app.get('/jadwal', (req, res) => {
+    res.sendFile(__dirname + '/public/pages/form-schedule.html');
 });
 
 
