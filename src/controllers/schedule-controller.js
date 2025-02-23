@@ -60,7 +60,33 @@ class ScheduleController {
                 message: "Internal server error"
             });
         }
+    }
 
+    // Handler untuk delete 
+    static async deleteScheduleHandler(req, res) {
+        try {
+            const { id } = req.params;
+
+            const deletedItem = await ScheduleModel.deleteItem(id);
+
+            if (deletedItem.affectedRows) {
+                return res.status(200).json({
+                    status: "success",
+                    message: "Data deleted successfully",
+                });
+            }
+
+            res.status(404).json({
+                status: "fail",
+                message: "Data not found",
+            });
+        } catch (error) {
+            console.error("Error deleting item:", error);
+            res.status(500).json({
+                status: "error",
+                message: "Internal server error"
+            });
+        }
     }
 
 }
